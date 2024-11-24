@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workload Monitoring</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+<style>
+
+.overload 
+{
+    background-color: #f8d7da !important; /* Light red */
+    color: #721c24 !important; /* Dark red text */
+}
+.normal-load 
+{
+    background-color: #d4edda !important; /* Light green */
+    color: #155724 !important; /* Dark green text */
+}
+</style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Workload Monitoring</h1>
+
+        <!-- Workload Table -->
+        <table class="table table-bordered text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>Lecturer</th>
+                    <th>Total Lecture Hours</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for workload in lecturer_workload %}
+                <!-- Apply the correct class based on workload -->
+                <tr class="{% if workload.exceeds_limit %}overload{% else %}normal-load{% endif %}">
+                    <td>{{ workload.lecturer.name }}</td>
+                    <td>{{ workload.total_hours }} / 20</td>
+                    <td>
+                        {% if workload.exceeds_limit %}
+                        Overloaded
+                        {% else %}
+                        Normal
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end mb-3">
+            <a href="{% url 'apply_leave' %}" class="btn btn-primary">Apply Leave</a>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
