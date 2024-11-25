@@ -54,6 +54,10 @@ A web-based Time Table Management System built using the Django framework. This 
  ```bash
  py manage.py runserver
  ```
+6.Open the Application in your Browser:
+ ```bash
+ http://127.0.0.1:8000/
+ ```
 ## Admin Features
 Manage schedules and monitor lecturer workloads via the admin panel.
 Register and manage lecturers, halls, and subjects.
